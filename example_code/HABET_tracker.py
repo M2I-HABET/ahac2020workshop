@@ -25,8 +25,8 @@ CS = digitalio.DigitalInOut(board.D10)
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 
 # Define radio frequency
-#RADIO_FREQ_MHZ = 433.0
-RADIO_FREQ_MHZ = 915.0
+RADIO_FREQ_MHZ = 433.0
+#RADIO_FREQ_MHZ = 915.0
 
 # Define RESET pin
 RESET = digitalio.DigitalInOut(board.D11)
@@ -86,4 +86,4 @@ while True:
             print("No GPS")
 
     # Pauses for 1 second before restaring the cycle
-    time.sleep(1)
+    time.sleep(.1)
