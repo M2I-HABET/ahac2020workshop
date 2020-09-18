@@ -29,15 +29,13 @@ while run:
             r = requests.post(url = postURL, data = {})
             print(r.text)
             json_data = json.loads(r.text)
-            latB = float(json_data['lat'])#43.02700680709
-            lonB = float(json_data['lon'])#-94.6533878648
+            latB = float(json_data['lat'])
+            lonB = float(json_data['lon'])
             alt = float(json_data['alt'])
             invalid = False
         except:
             print("no server")
-            continue
-        
-        
+            continue 
                 
     try:
         

@@ -13,7 +13,9 @@ R = 6372.795477598*1000
 flightID = "a8fa88c0-a1b2-4751-a3e9-44a7419b0983"
 scriptID = "429c4f46-140b-4db4-8cf9-6acc88f5b019"
 postURL = "http://127.0.0.1:8000/REST/V1/flight_location"
-aprsURL = "http://api.aprs.fi/api/get?name=W0ISU-10&what=loc&apikey=128630.PDyTBXmisXvARO&format=json"
+AprsFlightId = "W0ISU-10"
+AprsFiApiKey = ""
+aprsURL = "http://api.aprs.fi/api/get?name="+AprsFlightId+"&what=loc&apikey="+aprsFiApiKey+"&format=json"
 run = True
 
 while run:
@@ -33,7 +35,7 @@ while run:
         alt = float(jsonVals['entries'][0]['altitude'])
     
     except:
-        print("no dat")
+        print("no data")
         time.sleep(2)
         continue
     print(latB)
@@ -49,7 +51,7 @@ while run:
         except:
             print("no server")
         invalid = False
-    time.sleep(60)
+    time.sleep(60)# any faster then this and aprs.fi get angry
             
 
  

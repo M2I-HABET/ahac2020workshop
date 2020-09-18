@@ -17,19 +17,12 @@ def _parse_degrees(nmea_data):
     return deg + minutes/60
 
 
-def serverThread(threadname, q):
-
-    home_lat = 42.02700680709537
-    home_lon = -93.65338786489195
-    home_alt = 300
-    R = 6372.795477598*1000
+def MainLoop():
 
     flightID = "fa0b701b-e40a-4711-94c0-09fedd0b1cac"
     scriptID = "429c4f46-140b-4db4-8cf9-6acc88f5b018"
     postURL = "http://10.29.189.44/REST/V1/flight_location"
     postURLRaw = "http://10.29.189.44/REST/V1/flight_data_raw"
-    latA = home_lat
-    lonA = home_lon
     run = True
     lora = serial.Serial(port="COM27", baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
     lora.flushInput()
@@ -70,7 +63,6 @@ def serverThread(threadname, q):
             time.sleep(.1)
             #print(line)
             if "GPGGA" not in line:
-            
                 continue
             try:
                 data = [vals[0],_parse_degrees(vals[3]),vals[4],_parse_degrees(vals[5]),vals[6],vals[10]]
@@ -101,10 +93,7 @@ def serverThread(threadname, q):
                 print(e)
                 print("bad String")
 
-#queue = Queue()
-#serverThread = Thread( target=serverThread, args=("Data-Thread", queue) )
 
-#serverThread.start()
-#serverThread.join()
+if __name__ == "__main__":
 
-serverThread(1,1)
+  MainLoop()
